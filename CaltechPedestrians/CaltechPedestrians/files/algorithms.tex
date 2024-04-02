@@ -1,0 +1,588 @@
+\documentclass[onecolumn]{article}
+\usepackage[margin=1.2in]{geometry}
+\usepackage[pagebackref=true,breaklinks=true,
+  colorlinks,bookmarks=false]{hyperref}
+\usepackage{booktabs,pifont,arydshln}
+\begin{document}
+\title{ Caltech Pedestrian Dataset:\\ Evaluated Algorithms}
+\date{}\maketitle\vspace{-8mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\arraystretch}{1.20}
+\newcommand{\chmrk}{{\centering\ding{51}}}
+
+\def\cp{\hspace{2mm}}
+\begin{table}[!h]\centering\footnotesize
+\begin{tabular}{@{}l@{\cp}c|c@{\cp}c@{\cp}c|c@{}}
+  & & features & classifier & training & notes \\\toprule[0.5mm]
+  \textbf{ACF} & \cite{DollarPAMI14} & channels & AdaBoost & INRIA &
+   evolution of ChnFtrs
+   \href{http://vision.ucsd.edu/~pdollar/toolbox/doc/index.html}{[source code]}\\
+  \textbf{ACF++} & \cite{OhnBarICPR16} & channels & AdaBoost & Caltech & \\
+  \textbf{ACF-Caltech} & \cite{DollarPAMI14} & channels & AdaBoost & Caltech &
+   evolution of ChnFtrs
+   \href{http://vision.ucsd.edu/~pdollar/toolbox/doc/index.html}{[source code]}\\
+  \textbf{ACF-Caltech+} & \cite{NamNIPS14} & channels & AdaBoost & Caltech &
+   uses deeper trees and denser sampling\\
+  \textbf{ACF+SDt} & \cite{ParkCVPR13} & channels & AdaBoost & Caltech &
+   SDt = Stabilized Dt (motion features) \\
+  \textbf{AdaptFasterRCNN} & \cite{ZhangCVPR17} & pixels & DeepNet & Caltech+ &
+   ImageNet+CityPersons data \\
+  \textbf{ADM} & \cite{ZhangTIP18} & pixels & deep net & Caltech+ImageNet &
+   ImageNet pre-training \\
+  \textbf{AFS} & \cite{LeviCVPR13} & multiple & linear SVM & INRIA &
+   accelerated version of FeatSynth \\
+  \textbf{AFS+Geo} & \cite{LeviCVPR13} & multiple & linear SVM & INRIA &
+   variant of AFS with geometry constraints \\
+  \textbf{AR+PED} & \cite{BrazilCVPR19} & pixels & deep net & Caltech+ImageNet &
+   ImageNet pre-training \href{https://github.com/garrickbrazil/AR-Ped}{[source code]}\\
+  \textbf{CCF} & \cite{YangICCV15} & deep & AdaBoost & Caltech & \\
+  \textbf{CCF+CF} & \cite{YangICCV15} & deep+channels & AdaBoost & Caltech \\
+  \textbf{Checkerboards} & \cite{ZhangCVPR15} & channels & AdaBoost & Caltech & \\
+  \textbf{Checkerboards+} & \cite{ZhangCVPR15} & channels & AdaBoost & Caltech &
+   Checkerboards + flow-based features from \cite{ParkCVPR13} \\
+  \textbf{ChnFtrs} & \cite{DollarBMVC09} & channels & AdaBoost & INRIA &
+   updated (see addendum on author website) \\
+  \textbf{CompACT-Deep} & \cite{CaiICCV15} & multiple & boosting & Caltech & \\
+  \textbf{ConvNet} & \cite{SermanetCVPR13} & pixels & DeepNet & INRIA & \\
+  \textbf{Crosstalk} & \cite{DollarECCV12} & channels & AdaBoost & INRIA & \\
+  \textbf{DBN-Isol} & \cite{OuyangCVPR12} & HOG & DeepNet & INRIA & \\
+  \textbf{DBN-Mut} & \cite{OuyangCVPR13b} & HOG & DeepNet & INRIA/Caltech & \\
+  \textbf{DeepCascade} & \cite{AngelovaBMVC15} & pixels & DeepNet & Caltech & \\
+  \textbf{DeepCascade+} & \cite{AngelovaBMVC15} & pixels & DeepNet & Caltech+ & 
+   uses Caltech+ETH+Daimler for training\\
+  \textbf{DeepParts} & \cite{TianICCV2015} & pixels & DeepNet & Caltech & \\
+  \textbf{FastCF} & \cite{CosteaITSC15} & channels & AdaBoost & INRIA/Caltech &
+   100 fps on a CPU \\
+  \textbf{FasterRCNN+ATT} & \cite{ZhangCVPR18} & pixels & DeepNet & Caltech+ &
+   ImageNet data \\
+  \textbf{F-DNN} & \cite{DuArXiv16} & pixels & DeepNet & Caltech+ &
+   ImageNet+ETH+TudBrussels data\\
+  \textbf{F-DNN+SS} & \cite{DuArXiv16} & pixels & DeepNet & Caltech+ &
+   ImageNet+Cityscapes+ETH+TudBrussels data\\
+  \textbf{F-DNN2+SS} & \cite{DuArXiv18} & pixels & DeepNet & Caltech+ &
+   ImageNet+Cityscapes+ETH+TudBrussels data\\
+  \textbf{FeatSynth} & \cite{BarHillelECCV10} & multiple & linear SVM & INRIA & \\
+  \textbf{FisherBoost} & \cite{ShenIJCV13} & HOG+COV & FisherBoost & INRIA & \\
+  \textbf{FPDW} & \cite{DollarBMVC10} & channels & AdaBoost & INRIA &
+   accelerated variant of ChnFtrs \\
+  \textbf{FtrMine} & \cite{DollarCVPR07} & channels & AdaBoost & INRIA & \\
+  \textbf{Franken} & \cite{MathiasICCV13} & channels & AdaBoost & INRIA &
+   multiple occlusion specific models\\
+  \textbf{GDFL} & \cite{LinECCV18} & pixels & DeepNet & Caltech+ &
+   ImageNet data \\
+  \textbf{HikSvm} & \cite{MajiCVPR08} & HOG & HIK SVM & INRIA &
+   boundary effect fixed since publication \\
+  \textbf{HOG} & \cite{DalalCVPR05} & HOG & linear SVM & INRIA & \\
+  \textbf{HOG-LBP} & \cite{WangICCV09} & HOG+LBP & linear SVM & INRIA & \\
+  \textbf{InformedHaar} & \cite{ZhangCVPR14} & channels & AdaBoost & INRIA/Caltech & \\
+\end{tabular}\end{table}
+
+\begin{table}[!h]\centering\footnotesize
+\begin{tabular}{@{}l@{\cp}c|c@{\cp}c@{\cp}c|c@{}}
+  & & features & classifier & training & notes \\\toprule[0.5mm]
+  \textbf{JointDeep} & \cite{OuyangICCV13} & color+gradient & deep net & INRIA/Caltech & \\
+  \textbf{Katamari} & \cite{BenensonECCV14} & channels & AdaBoost & INRIA/Caltech & 
+   combines methods \cite{BenensonCVPR12,DollarPAMI14,NamNIPS14,OuyangCVPR13a,ParkCVPR13} \\
+  \textbf{LatSvm-V1} & \cite{FelzenszwalbCVPR08} & HOG & latent SVM & PASCAL & \\
+  \textbf{LatSvm-V2} & \cite{FelzenszwalbPAMI10} & HOG & latent SVM & INRIA & \\
+  \textbf{LDCF} & \cite{NamNIPS14} & channels & AdaBoost & Caltech &
+   locally decorrelated channel features\\
+  \textbf{LDCF++} & \cite{OhnBarICPR16} & channels & AdaBoost & Caltech & \\
+  \textbf{LFOV} & \cite{AngelovaICRA15} & pixels & DeepNet & Caltech & \\
+  \textbf{MLS} & \cite{NamICCV11} & HOG & AdaBoost & INRIA & \\
+  \textbf{MOCO} & \cite{ChenCVPR13} & HOG+LBP & latent SVM & Caltech & \\
+  \textbf{MRFC+Semantic} & \cite{CosteaCVPR16} & channels & boosting &
+   Caltech+ & CamVid+SiftFlow+KITTI data for segm.\\
+  \textbf{MS-CNN} & \cite{CaiECCV16} & pixels & deep net & Caltech+ImageNet & ImageNet pre-training \\
+  \textbf{MT-DPM} & \cite{YanCVPR13} & HOG & latent SVM & Caltech & \\
+  \textbf{MT-DPM+Context} & \cite{YanCVPR13} & HOG & latent SVM & Caltech+ &
+   context obtained from a vehicle detector \\
+  \textbf{MultiFtr} & \cite{WojekDAGM08} & multiple & AdaBoost & INRIA & \\
+  \textbf{MultiFtr+CSS} & \cite{WalkCVPR10} & multiple & linear SVM & TUD-Motion & \\
+  \textbf{MultiFtr+Motion} & \cite{WalkCVPR10} & multiple & linear SVM & TUD-Motion & \\
+  \textbf{MultiResC} & \cite{ParkECCV10} & HOG & latent SVM & Caltech & \\
+  \textbf{MultiSDP} & \cite{ZengICCV13} & HOG+CSS & deep net & INRIA/Caltech & \\
+  \textbf{NAMC} & \cite{TocaBMVC15} & channels & AdaBoost & INRIA/Caltech & \\
+  \textbf{pAUCBoost} & \cite{PaisitkriangkraiICCV13} & HOG+COV & pAUCBoost & INRIA &
+   optimized for low false-positives \\
+  \textbf{PCN} & \cite{WangBMVC17} & pixels & deep net & Caltech+ImageNet & ImageNet pre-training \\
+  \textbf{Pls} & \cite{SchwartzICCV09} & multiple & PLS+QDA & INRIA & \\
+  \textbf{PoseInv} & \cite{LinECCV08} & HOG & AdaBoost & INRIA+ &
+   trained with annotated silhouettes\\
+  \textbf{PoseInvSvm} & \cite{LinECCV08} & HOG & kernel SVM & INRIA+ &
+   trained with annotated silhouettes\\
+  \textbf{RandForest} & \cite{MarinICCV13} & HOG+LBP & random forest & INRIA/Caltech &
+    Caltech results include context (CGP)\\
+  \textbf{Roerei} & \cite{BenensonCVPR13} & channels & AdaBoost & INRIA & \\
+  \textbf{RPN+BF} & \cite{ZhangECCV16} & pixels & DeepNet+AdaBoost & Caltech+ImageNet & ImageNet pre-training \\
+  \textbf{SA-FastRCNN} & \cite{LiArxiv2016} & pixels & deep net & Caltech+ImageNet & ImageNet pre-training \\
+  \textbf{SCCPriors} & \cite{YangBMVC15} & channels & AdaBoost & INRIA/Caltech & \\
+  \textbf{SCF+AlexNet} & \cite{HosangCVPR15} & pixels & deep net & Caltech+ImageNet & ImageNet pre-training \\  
+  \textbf{SDN} & \cite{LuoCVPR14} & pixels & deep net & INRIA/Caltech & \\
+  \textbf{SDS-RCNN} & \cite{BrazilICCV17} & pixels & deep net & Caltech+ImageNet & ImageNet pre-training \\
+  \textbf{Shapelet} & \cite{SabzmeydaniCVPR07} & gradients & AdaBoost & INRIA &
+   with boundary effects fixed \cite{WojekDAGM08}\\
+  \textbf{Shapelet-orig} & \cite{SabzmeydaniCVPR07} & gradients & AdaBoost & INRIA &
+   original implementation\\
+  \textbf{ShearFtrs} & \cite{PfeiferJMIV19} & channels & AdaBoost & Caltech &
+   features based on shearlet transform \\
+  \textbf{SketchTokens} & \cite{LimCVPR13} & channels & AdaBoost & INRIA+ &
+   Sketch Tokens were trained on BSDS\\
+  \textbf{SpatialPooling} & \cite{PaisitkriangkraiECCV14} & multiple & pAUCBoost & INRIA/Caltech &
+   spatial pooling + shrinkage to avoid overfitting\\
+  \textbf{SpatialPooling+} & \cite{PaisitkriangkraiArXiv14} & multiple & pAUCBoost & Caltech &
+   improved version of \cite{PaisitkriangkraiICCV13,PaisitkriangkraiECCV14} + flow features\\
+  \textbf{TLL-TFA} & \cite{SongECCV18} & pixels & deep net & Caltech+ &
+   ImageNet+CityPersons data \\
+  \textbf{TA-CNN} & \cite{TianCVPR2015} & pixels & DeepNet & Caltech++ & 
+   augmented with external data\\
+  \textbf{UDN+} & \cite{OuyangPAMI17} & pixels & deep net & Caltech+ImageNet & ImageNet pre-training \\
+  \textbf{VeryFast} & \cite{BenensonCVPR12} & channels & AdaBoost & INRIA & \\
+  \textbf{VJ} & \cite{ViolaIJCV04} & Haar & AdaBoost & INRIA &
+   implementation from \cite{WojekDAGM08}\\
+  \textbf{VJ-OpenCV} & \cite{ViolaIJCV04} & Haar & AdaBoost & INRIA &
+   implementation from OpenCV\\
+  \textbf{WordChannels} & \cite{CosteaCVPR14} & WordChannels & AdaBoost & INRIA/Caltech & \\
+  \textbf{*+2Ped} & \cite{OuyangCVPR13a} & HOG & latent SVM & INRIA+ &
+   adds 2-person detector as context \\
+\end{tabular}\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{1}%\itemsep=1.3pt
+
+\bibitem{AngelovaICRA15}
+A. Angelova, A. Krizhevsky, V. Vanhoucke\\
+\href{http://www.vision.caltech.edu/anelia/publications/Angelova15LFOV.pdf}{
+Pedestrian Detection with a Large-Field-Of-View Deep Network}\\
+\textit{ICRA} 2015, Seattle, WA.
+
+\bibitem{AngelovaBMVC15}
+A. Angelova, A. Krizhevsky, V. Vanhoucke, A. Ogale, and D. Ferguson\\
+\href{http://www.vision.caltech.edu/anelia/publications/Angelova15RealTimePedestrian.pdf}{
+Real-Time Pedestrian Detection With Deep Network Cascades}\\
+\textit{BMVC} 2015, Swansea, UK.
+
+\bibitem{BarHillelECCV10}
+A. Bar-Hillel, D. Levi, E. Krupka, and C. Goldberg\\
+\href{http://sites.google.com/site/aharonbarhillel}{
+Part-based Feature Synthesis for Human Detection}\\
+\textit{ECCV} 2010, Crete, Greece.
+
+\bibitem{BenensonCVPR12}
+R. Benenson, Mathias M., R. Timofte, and L. Van Gool\\
+\href{http://rodrigob.github.com}{
+Pedestrian detection at 100 Frames Per Second}\\
+\textit{CVPR} 2012,  Providence, Rhode Island.
+
+\bibitem{BenensonCVPR13}
+R. Benenson, M. Mathias, T. Tuytelaars and L. Van Gool\\
+\href{http://rodrigob.github.com}{
+Seeking the strongest rigid detector}\\
+\textit{CVPR} 2013, Portland, OR.
+
+\bibitem{BenensonECCV14}
+R. Benenson, M. Omran, J. Hosang, and B. Schiele\\
+\href{http://rodrigob.github.com}{
+Ten years of pedestrian detection, what have we learned?}\\
+\textit{ECCV-CVRSUAD} 2014, Zurich, Switzerland.
+
+\bibitem{BrazilICCV17}
+G. Brazil, X. Yin, and X. Liu\\
+\href{https://github.com/garrickbrazil/SDS-RCNN}{
+Illuminating Pedestrians via Simultaneous Detection \& Segmentation}\\
+\textit{ICCV} 2017, Venice, Italy.
+
+\bibitem{BrazilCVPR19}
+G. Brazil and X. Liu\\
+\href{http://cvlab.cse.msu.edu/project-arped.html}{Pedestrian Detection with Autoregressive Network Phases}\\
+\textit{CVPR} 2019, Long Beach, CA.
+
+\bibitem{CaiICCV15}
+Z. Cai, M. Saberian, and N. Vasconcelos\\
+\href{http://arxiv.org/abs/1507.05348}{
+Learning Complexity-Aware Cascades for Deep Pedestrian Detection}\\
+\textit{ICCV} 2015, Santiago, Chile.
+
+\bibitem{CaiECCV16}
+Z. Cai, Q. Fan, R. Feris, and N. Vasconcelos\\
+\href{https://arxiv.org/abs/1607.07155}{
+A Unified Multi-scale Deep Convolutional Neural Network for Fast Object Detection}\\
+\textit{ECCV} 2016, Amsterdam, The Netherlands.
+
+\bibitem{ChenCVPR13}
+G. Chen, Y. Ding, J. Xiao, and T. Han\\
+\href{http://www.eecis.udel.edu/~ding/}{
+Detection Evolution with Multi-order Contextual Co-occurrence.}\\
+\textit{CVPR} 2013, Portland, OR.
+
+\bibitem{CosteaCVPR14}
+A. D. Costea and S. Nedevschi\\
+\href{http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/%
+Costea_Word_Channel_Based_2014_CVPR_paper.pdf}{
+Word Channel Based Multiscale Pedestrian Detection\\
+Without Image Resizing and Using Only One Classifier}\\
+\textit{CVPR} 2014, Columbus, Ohio.
+
+\bibitem{CosteaCVPR16}
+A. D. Costea and S. Nedevschi\\
+\href{http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Costea_Semantic_Channels_for_CVPR_2016_paper.pdf}{
+Semantic Channels for Fast Pedestrian Detection}\\
+\textit{CVPR} 2016, Las Vegas, Nevada.
+
+\bibitem{CosteaITSC15}
+A. D. Costea, A. Vesa, and S. Nedevschi\\
+\href{http://programme.exordo.com/itsc2015/delegates/presentation/388/}{
+Fast Pedestrian Detection for Mobile Devices}\\
+\textit{ITSC} 2015, Canary Islands.
+
+\bibitem{DalalCVPR05}
+N. Dalal and B. Triggs\\
+\href{http://pascal.inrialpes.fr/soft/olt}{
+Histogram of Oriented Gradient for Human Detection}\\
+\textit{CVPR} 2005, San Diego, California.
+
+\bibitem{DollarECCV12}
+P. Doll\'ar, R. Appel and W. Kienzle\\
+\href{http://vision.ucsd.edu/~pdollar/research.html}{
+Crosstalk Cascades for Frame-Rate Pedestrian Detection}\\
+\textit{ECCV} 2012, Florence Italy.
+
+\bibitem{DollarBMVC10}
+P. Doll\'ar, S. Belongie and P. Perona\\
+\href{http://vision.ucsd.edu/~pdollar/research.html}{
+The Fastest Pedestrian Detector in the West}\\
+\textit{BMVC} 2010, Aberystwyth, UK.
+
+\bibitem{DollarCVPR07}
+P. Doll\'ar, Z. Tu, H. Tao and S. Belongie\\
+\href{http://vision.ucsd.edu/~pdollar/research.html}{
+Feature Mining for Image Classification}\\
+\textit{CVPR} 2007, Minneapolis, Minnesota.
+
+\bibitem{DollarBMVC09}
+P. Doll\'ar, Z. Tu, P. Perona and S. Belongie\\
+\href{http://vision.ucsd.edu/~pdollar/research.html}{
+Integral Channel Features}\\
+\textit{BMVC} 2009, London, England.
+
+\bibitem{DollarPAMI14}
+P. Doll\'ar, R. Appel, S. Belongie, and P. Perona\\
+\href{http://vision.ucsd.edu/~pdollar/files/papers/DollarPAMI14pyramids.pdf}{
+Fast Feature Pyramids for Object Detection }\\
+\textit{PAMI}, 2014.
+
+\bibitem{DuArXiv16}
+X. Du, M. El-Khamy, J. Lee, and L. S. Davis\\
+\href{https://arxiv.org/abs/1610.03466}{
+Fused DNN: A deep neural network fusion approach to fast and robust pedestrian detection}\\
+\textit{arXiv}, 2016.
+
+\bibitem{DuArXiv18}
+X. Du, M. El-Khamy, V. Morariu, J. Lee, and L. S. Davis\\
+\href{https://arxiv.org/abs/1805.08688}{
+Fused Deep Neural Networks for Efficient Pedestrian Detection}\\
+\textit{arXiv}, 2018.
+
+\bibitem{FelzenszwalbCVPR08}
+P. Felzenszwalb, D. McAllester, D. Ramanan\\
+\href{http://www.cs.berkeley.edu/~rbg/latent}{
+A Discriminatively Trained, Multiscale, Deformable Part Model}\\
+\textit{CVPR} 2008, Anchorage, Alaska.
+
+\bibitem{FelzenszwalbPAMI10}
+P. Felzenszwalb, R. Girshick, D. McAllester, D. Ramanan\\
+\href{http://www.cs.berkeley.edu/~rbg/latent}{
+Object Detection with Discriminatively Trained Part Based Models}\\
+\textit{PAMI} 2010.
+
+\bibitem{HosangCVPR15}
+J. Hosang, M. Omran, R. Benenson, and B. Schiele\\
+\href{https://www.mpi-inf.mpg.de/departments/computer-vision-and-multimodal-computing/research/people-detection-pose-estimation-and-tracking/taking-a-deeper-look-at-pedestrians/}{
+Taking a Deeper Look at Pedestrians}\\
+\textit{CVPR} 2015, Boston, Massachusetts.
+
+\bibitem{LeviCVPR13}
+D. Levi, S. Silberstein, A. Bar-Hillel\\
+\href{https://sites.google.com/site/danmlevi/}{
+Fast multiple-part based object detection using KD-Ferns}\\
+\textit{CVPR} 2013, Portland, OR.
+
+\bibitem{LiArxiv2016}
+J. Li, X. Liang, S. Shen, T. Xu, and S. Yan\\
+\href{http://arxiv.org/abs/1510.08160}{
+Scale-aware Fast R-CNN for Pedestrian Detection}\\
+\textit{arXiv}, 2016.
+
+\bibitem{LimCVPR13}
+J. Lim, C. Lawrence Zitnick, P. Doll\'ar\\
+\href{https://github.com/joelimlimit/SketchTokens}{
+Sketch Tokens: A Learned Mid-level Representation for Contour and Object Detection }\\
+\textit{CVPR} 2013, Portland, OR.
+
+\bibitem{LinECCV18}
+C. Lin, L. Jiwen, G. Wang, and J. Zhou\\
+\href{http://openaccess.thecvf.com/content_ECCV_2018/html/Chunze_Lin_Graininess-Aware_Deep_Feature_ECCV_2018_paper.html}{
+Graininess-Aware Deep Feature Learning for Pedestrian Detection}\\
+\textit{ECCV} 2018, Munich, Germany.
+
+\bibitem{LinECCV08}
+Z. Lin and L. Davis\\
+\href{http://www.adobe.com/technology/people/san-jose/zhe-lin.html}{
+A Pose-Invariant Descriptor for Human Detection and Segmentation}\\
+\textit{ECCV} 2008, Marseille, France.
+
+\bibitem{LuoCVPR14}
+P. Luo, Y. Tian, X. Wang, and X. Tang\\
+\href{http://mmlab.ie.cuhk.edu.hk/publications.html}{
+Switchable Deep Network for Pedestrian Detection}\\
+\textit{CVPR} 2014, Columbus, Ohio.
+
+\bibitem{MajiCVPR08}
+S. Maji, A. C. Berg, J. Malik\\
+\href{http://www.cs.berkeley.edu/~smaji/projects/fiksvm}{
+Classification Using Intersection Kernel Support Vector Machines is efficient}\\
+\textit{CVPR} 2008, Anchorage, Alaska.
+
+\bibitem{MarinICCV13}
+J. Marin, D. Vazquez, A. Lopez, J. Amores, B. Leibe\\
+\href{http://refbase.cvc.uab.es/files/mvl2013b.pdf}{
+Random Forests of Local Experts for Pedestrian Detection}\\
+\textit{ICCV} 2013, Sydney, Australia.
+
+\bibitem{MathiasICCV13}
+M. Mathias, R. Benenson, R. Timofte, L. Van Gool\\
+\href{http://www.vision.ee.ethz.ch/~timofter/publications/Mathias-ICCV-2013.pdf}{
+Handling Occlusions with Franken-classifiers}\\
+\textit{ICCV} 2013, Sydney, Australia.
+
+\bibitem{NamICCV11}
+W. Nam, B. Han, and J. H. Han\\
+\href{http://home.postech.ac.kr/~xgene/}{
+Improving Object Localization Using Macrofeature Layout Selection}\\
+\textit{ICCV Workshop on Visual Surveillance} 2011, Barcelona, Spain.
+
+\bibitem{NamNIPS14}
+W. Nam, P. Doll\'ar, and J. H. Han\\
+\href{http://vision.ucsd.edu/~pdollar/research.html}{
+Local Decorrelation For Improved Pedestrian Detection}\\
+\textit{NIPS} 2014, Montreal, Quebec.
+
+\bibitem{OhnBarICPR16}
+E. Ohn-Bar and M. Trivedi\\
+\href{http://cvrr.ucsd.edu/eshed/papers/boostornot.pdf}{
+To Boost or Not to Boost? On the Limits of Boosted Trees for Object Detection}\\
+\textit{ICPR} 2016, Cancun, Mexico.
+
+\bibitem{OuyangCVPR12}
+W. Ouyang and X. Wang\\
+\href{http://www.ee.cuhk.edu.hk/~wlouyang/projects/ouyangWcvpr12Occ/index.html}{
+A Discriminative Deep Model for Pedestrian Detection with Occlusion Handling}\\
+\textit{CVPR} 2012, Providence, RI.
+
+\bibitem{OuyangICCV13}
+W. Ouyang and X. Wang\\
+\href{http://www.ee.cuhk.edu.hk/~wlouyang/projects/ouyangWiccv13Joint/index.html}{
+Joint Deep Learning for Pedestrian Detection}\\
+\textit{ICCV} 2013, Sydney, Australia.
+
+\bibitem{OuyangCVPR13a}
+W. Ouyang and X. Wang\\
+\href{http://www.ee.cuhk.edu.hk/~wlouyang/projects/ouyangWcvpr13MultiPed/index.html}{
+Single-pedestrian detection aided by multi-pedestrian detection.}\\
+\textit{CVPR} 2013, Portland, OR.
+
+\bibitem{OuyangCVPR13b}
+W. Ouyang, X. Zeng and X. Wang\\
+\href{http://mmlab.ie.cuhk.edu.hk/projects/ouyangZWcvpr13MutVisibility/index.html}{
+Modeling Mutual Visibility Relationship with a Deep Model in Pedestrian Detection}\\
+\textit{CVPR} 2013, Portland, OR.
+
+\bibitem{OuyangPAMI17}
+W. Ouyang, H. Zhou, H. Li, Q. Li, J. Yan and X. Wang\\
+\href{http://ieeexplore.ieee.org/document/8008790/}{
+Jointly learning deep features, deformable parts, occlusion\\
+and classification for pedestrian detection}\\
+\textit{PAMI}, 2017.
+
+\bibitem{PaisitkriangkraiICCV13}
+S. Paisitkriangkrai, C. Shen, A. van den Hengel\\
+\href{http://arxiv.org/abs/1310.0900}{
+Efficient pedestrian detection by directly optimize the partial area under the ROC curve}\\
+\textit{ICCV} 2013, Sydney, Australia.
+
+\bibitem{PaisitkriangkraiECCV14}
+S. Paisitkriangkrai, C. Shen, A. van den Hengel\\
+\href{http://arxiv.org/abs/1407.0786}{
+Strengthening the Effectiveness of Pedestrian Detection}\\
+\textit{ECCV} 2014, Zurich, Switzerland.
+
+\bibitem{PaisitkriangkraiArXiv14}
+S. Paisitkriangkrai, C. Shen, A. van den Hengel\\
+\href{http://arxiv.org/abs/1409.5209}{
+Pedestrian Detection with Spatially Pooled Features and Structured Ensemble Learning}\\
+\textit{arXiv}, 2014.
+
+\bibitem{ParkECCV10}
+D. Park, D. Ramanan, C. Fowlkes\\
+\href{http://vision.ics.uci.edu/papers/ParkRF_ECCV_2010}{
+Multiresolution models for object detection}\\
+\textit{ECCV} 2010, Crete, Greece.
+
+\bibitem{ParkCVPR13}
+D. Park, C. Lawrence Zitnick, D. Ramanan, P. Doll\'ar\\
+\href{http://vision.ucsd.edu/~pdollar/files/papers/ParkCVPR13MotionFtrs.pdf}{
+Exploring Weak Stabilization for Motion Feature Extraction}\\
+\textit{CVPR} 2013, Portland, OR.
+
+\bibitem{PfeiferJMIV19}
+L. Pfeifer\\
+\href{https://doi.org/10.1007/s10851-018-0834-9}{
+Shearlet Features for Pedestrian Detection}\\
+\textit{Journal of Mathematical Imaging and Vision}, 2019.
+
+\bibitem{SabzmeydaniCVPR07}
+P. Sabzmeydani and G. Mori\\
+\href{http://www.cs.sfu.ca/~mori/research}{
+Detecting pedestrians by learning shapelet features}\\
+\textit{CVPR} 2007, Minneapolis, Minnesota.
+
+\bibitem{SchwartzICCV09}
+W.R. Schwartz, A. Kembhavi, D. Harwood, L. S. Davis\\
+\href{http://homepages.dcc.ufmg.br/~william/softwares.html\#detectorPLS}{
+Human Detection Using Partial Least Squares Analysis}\\
+\textit{ICCV} 2009, Kyoto, Japan.
+
+\bibitem{SermanetCVPR13}
+P. Sermanet, K. Kavukcuoglu, S. Chintala, Y. LeCun\\
+\href{http://cs.nyu.edu/~sermanet/}{
+Pedestrian Detection with Unsupervised Multi-Stage Feature Learning}\\
+\textit{CVPR} 2013, Portland, OR.
+
+\bibitem{ShenIJCV13}
+C. Shen, P. Wang, S. Paisitkriangkrai, A. van den Hengel\\
+\href{http://arxiv.org/abs/1301.2032}{
+Training Effective Node Classifiers for Cascade Classification}\\
+\textit{IJCV} 2013.
+
+\bibitem{SongECCV18}
+T. Song, L. Sun, D. Xie, H. Sun, S. Pu\\
+\href{https://arxiv.org/abs/1807.01438}{
+Small-scale Pedestrian Detection Based on Somatic Topology Localization and Temporal Feature Aggregation}\\
+\textit{ECCV} 2018, Munich, Germany.
+
+\bibitem{TianCVPR2015}
+Y. Tian, P. Luo, X. Wang, and X. Tang\\
+\href{http://mmlab.ie.cuhk.edu.hk/projects/TA-CNN/}{
+Pedestrian Detection aided by Deep Learning Semantic Tasks}\\
+\textit{CVPR} 2015, Boston, Massachusetts.
+
+\bibitem{TianICCV2015}
+Y. Tian, P. Luo, X. Wang, and X. Tang\\
+\href{http://personal.ie.cuhk.edu.hk/~ty014/}{
+Deep Learning Strong Parts for Pedestrian Detection}\\
+\textit{ICCV} 2015, Santiago, Chile.
+
+\bibitem{TocaBMVC15}
+C. Toca, M. Ciuc, and C. Patrascu\\
+\href{http://bmvc2015.swansea.ac.uk/proceedings/papers/paper175/paper175.pdf}{
+Normalized Autobinomial Markov Channels For Pedestrian Detection}\\
+\textit{BMVC} 2015, Swansea, UK.
+
+\bibitem{ViolaIJCV04}
+P. Viola and M. Jones\\
+\href{http://en.wikipedia.org/wiki/Viola-Jones_object_detection_framework}{
+Robust Real-Time Face Detection}\\
+\textit{IJCV} 2004.
+
+\bibitem{WalkCVPR10}
+S. Walk, N. Majer, K. Schindler, B. Schiele\\
+\href{http://www.d2.mpi-inf.mpg.de/user/31}{
+New Features and Insights for Pedestrian Detection}\\
+\textit{CVPR} 2010, San Francisco, California.
+
+\bibitem{WangBMVC17}
+S. Wang, J. Cheng, H. Liu, and M. Tang\\
+\href{https://arxiv.org/abs/1804.04483}{
+PCN: Part and context information for pedestrian detection with CNNs}\\
+\textit{BMVC} 2017, London, UK.
+
+\bibitem{WangICCV09}
+X. Wang, T. X. Han, and S. Yan\\
+\href{http://web.missouri.edu/~hantx}{
+An HOG-LBP Human Detector with Partial Occlusion Handling}\\
+\textit{ICCV} 2009, Kyoto, Japan.
+
+\bibitem{WojekDAGM08}
+C. Wojek and B. Schiele\\
+\href{http://www.d2.mpi-inf.mpg.de/user/7}{
+A Performance Evaluation of Single and Multi-Feature People Detection}\\
+\textit{DAGM} 2008, Munich, Germany.
+
+\bibitem{YanCVPR13}
+J. Yan, X. Zhang, Z. Lei, S. Liao, S. Z. Li\\
+\href{http://www.cv-foundation.org/openaccess/content_cvpr_2013/papers/Yan_Robust_Multi-resolution_Pedestrian_2013_CVPR_paper.pdf}{
+Robust Multi-Resolution Pedestrian Detection in Traffic Scenes}\\
+\textit{CVPR} 2013, Portland, OR.
+
+\bibitem{YangICCV15}
+B. Yang, J. Yan, Z. Lei, and S. Z. Li\\
+\href{http://www.cbsr.ia.ac.cn/users/byang/papers/ccf.pdf}{
+Convolutional Channel Features}\\
+\textit{ICCV} 2015, Santiago, Chile.
+
+\bibitem{YangBMVC15}
+Y. Yang, Z. Wang, and F. Wu\\
+\href{http://bmvc2015.swansea.ac.uk/proceedings/papers/paper176/paper176.pdf}{
+Exploring Prior Knowledge for Pedestrian Detection}\\
+\textit{BMVC} 2015, Swansea, UK.
+
+\bibitem{ZengICCV13}
+X. Zeng, W. Ouyang, X. Wang\\
+\href{http://www.ee.cuhk.edu.hk/~xgwang/papers/zengOWiccv13.pdf}{
+Multi-Stage Contextual Deep Learning for Pedestrian Detection}\\
+\textit{ICCV} 2013, Sydney, Australia.
+
+\bibitem{ZhangECCV16}
+L. Zhang, L. Lin, X. Liang, K. He\\
+\href{http://kaiminghe.com/publications/eccv16ped.pdf}{
+Is Faster R-CNN Doing Well for Pedestrian Detection?}\\
+\textit{ECCV} 2016, Amsterdam, The Netherlands.
+
+\bibitem{ZhangCVPR14}
+S. Zhang, C. Bauckhage, and A. B. Cremers\\
+\href{http://www.iai.uni-bonn.de/~zhangs/Shanshan_CVPR2014.pdf}{
+Informed Haar-like Features Improve Pedestrian Detection}\\
+\textit{CVPR} 2014, Columbus, Ohio.
+
+\bibitem{ZhangCVPR15}
+S. Zhang, R. Benenson, and B. Schiele\\
+\href{http://arxiv.org/abs/1501.05759}{
+Filtered channel features for pedestrian detection}\\
+\textit{CVPR} 2015, Boston, Massachusetts.
+
+\bibitem{ZhangCVPR17}
+S. Zhang, R. Benenson, and B. Schiele\\
+\href{http://openaccess.thecvf.com/content_cvpr_2017/papers/Zhang_CityPersons_A_Diverse_CVPR_2017_paper.pdf}{
+CityPersons: A Diverse Dataset for Pedestrian Detection}\\
+\textit{CVPR} 2017, Honolulu, Hawaii.
+
+\bibitem{ZhangCVPR18}
+S. Zhang, J. Yang, and B. Schiele\\
+\href{http://openaccess.thecvf.com/content_cvpr_2018/html/Zhang_Occluded_Pedestrian_Detection_CVPR_2018_paper.html}{
+Occluded Pedestrian Detection Through Guided Attention in CNNs}\\
+\textit{CVPR} 2018, Salt Lake City, Utah.
+
+\bibitem{ZhangTIP18}
+X. Zhang, L. Cheng, B. Li, and H. Hu\\
+\href{https://ieeexplore.ieee.org/abstract/document/8328854}{
+Too Far to See? Not Really!— Pedestrian Detection with Scale-aware Localization Policy}\\
+\textit{TIP}, 2018.
+
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
