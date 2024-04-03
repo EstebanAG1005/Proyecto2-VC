@@ -1,0 +1,26 @@
+\documentclass[10pt,letterpaper]{article}
+
+% packages and margins
+\usepackage{geometry,times,graphicx}
+\usepackage[scriptsize,center]{subfigure}
+\oddsidemargin -.5in 
+\topmargin -1in
+\textwidth 7.5in
+\paperheight 4.5in
+\textheight 3.5in
+\pagestyle{empty} 
+
+\begin{document}
+
+%##############################################################################
+\begin{figure} \center \subfiguretopcaptrue
+\subfigure[Caltech Pedestrian Data (peds.~$\ge 100$ pixels)]{
+  \includegraphics[width=.48\textwidth]{"timeVsErrorR01"}\hspace{2mm}}
+\subfigure[Caltech Pedestrian Data (peds.~$\ge 50$ pixels))]{
+  \includegraphics[width=.48\textwidth]{"timeVsErrorR02"}}
+\caption{ \footnotesize Log-average miss rate versus the runtime of each detector on $640 \times 480$ images from the Caltech Pedestrian Dataset. Run times of all detectors are normalized to the rate of a single modern machine, hence all times are directly comparable. (Note that the VJ implementation used did not utilize scale invariance and hence its slow speed). Legends are ordered by detector speed, reported in frames per second (fps). \textbf{(a)} Speed vs.~performance for pedestrians 100 pixels and up (the `near scale' setting). \textbf{(b)} Speed vs.~performance for pedestrians 50 pixels and up (the `reasonable' setting). While the slowest detector happens to also be the most accurate (MultiFtr+Motion), for pedestrians over 50 pixels the two fastest detectors, FPDW and Crosstalk, are also amongs the most accurate, respectively. }
+\label{fig:res:speed}
+\end{figure}
+%##############################################################################
+
+\end{document}

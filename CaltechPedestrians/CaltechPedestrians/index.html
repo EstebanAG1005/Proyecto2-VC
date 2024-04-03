@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Caltech Pedestrian Detection Benchmark</title>
+<meta name="description" content="Large scale pedestrian dataset for training and evaluating pedestrian detection algorithms. Up to date benchmarks of state-of-the art algorithms is maintained." />
+<meta name="keywords" content="computer vision, pedestrian detection, ped detection, object detection, dataset" />
+<link rel="stylesheet" href="files/caltechpeds.css" type="text/css">
+</head>
+<body>
+
+<TABLE width=800 align=center border=0><TBODY><TR><TD vAlign=top>
+
+<!--==================================================================================-->
+<center>
+<h1>Caltech Pedestrian Detection Benchmark</h1>
+<br />
+<img src="files/peds01_web.jpg" alt="peds01" width="180">
+<img src="files/peds02_web.jpg" alt="peds02" width="180">
+<img src="files/peds03_web.jpg" alt="peds03" width="180">
+<img src="files/peds04_web.jpg" alt="peds04" width="180">
+</center>
+
+<!--==================================================================================-->
+<h2>Description</h2>
+
+<p>The Caltech Pedestrian Dataset consists of approximately 10 hours of 640x480 30Hz video taken from a vehicle driving through regular traffic in an urban environment. About 250,000 frames (in 137 approximately minute long segments) with a total of 350,000 bounding boxes and 2300 unique pedestrians were annotated. The annotation includes temporal correspondence between bounding boxes and detailed occlusion labels. More information can be found in our <a href="files/PAMI12pedestrians.pdf">PAMI 2012</a> and <a href="files/CVPR09pedestrians.pdf">CVPR 2009</a> benchmarking papers. </p>
+
+<!--==================================================================================-->
+<h2><a name="Download"></a>Download</h2>
+
+<ul>
+<li><b><a href="datasets/USA/">Caltech Pedestrian Dataset</a></b>. The training data (set00-set05) consists of six training sets (~1GB each), each with 6-13 one-minute long seq files, along with all annotation information (see the paper for details). The testing data (set06-set10) consists of five sets, again ~1GB each. New: annotations for the entire dataset are now also provided. Output files containing detection results for all evaluated algorithms are also available. </li>
+
+<li><b><a href="https://pdollar.github.io/toolbox/videos/seqIo.html">Seq video format</a></b>. An seq file is a series of concatenated image frames with a fixed size header. Matlab routines for reading/writing/manipulating seq files can be found in <a href="https://pdollar.github.io/toolbox/index.html">Piotr's Matlab Toolbox</a> (version 3.20 or later required). These routines can also be used to extract an seq file to a directory of images.</li>
+
+<li><b><a href="code/code3.2.1.zip">Matlab evaluation/labeling code (3.2.1)</a></b>. The annotations use a custom "video bounding box" (vbb) file format. The code also contains utilities to view seq files with annotations overlaid, evaluation routines used to generate all the ROC plots in the paper, and also the vbb labeling tool used to create the dataset (see also this somewhat outdated <a href="files/vbbLabelerTutorial-divx.avi">video tutorial</a>).</li>
+
+<li><b><a href="datasets/">Additional datasets in standardized format</a></b>. For convenience we are posting full images/annotations in seq/vbb format as well as detection results for all evaluated algorithms on a number of additional datasets. This facilitates training/testing on these additional datasets and exact reproduction of all ROC curves. Full copyright remains with the original authors, please see the respective website for additional information including how to cite evaluation results on these datasets. <a href="http://pascal.inrialpes.fr/data/human/">INRIA pedestrian dataset </a> [<a href="datasets/INRIA/">converted</a>], <a href="http://www.vision.ee.ethz.ch/~aess/dataset/">ETH pedestrian dataset</a> [<a href="datasets/ETH/">converted</a>], <a href="http://www.d2.mpi-inf.mpg.de/tud-brussels">TUD-Brussels pedestrian dataset</a> [<a href="datasets/TudBrussels/">converted</a>], <a href="http://www.gavrila.net/Research/Pedestrian_Detection/Daimler_Pedestrian_Benchmark_D/Daimler_Mono_Ped__Detection_Be/daimler_mono_ped__detection_be.html">Daimler pedestrian dataset</a> [<a href="datasets/Daimler/">converted</a>].
+
+</ul>
+
+<!--==================================================================================-->
+<h2>Benchmark Results</h2>
+
+<h3><a href="files/algorithms.pdf">Algorithm Details and References</a> | <a href="files/timing.pdf">Algorithm Runtime vs. Performance</a></h3>
+
+<p>For details on the evaluation scheme please see our <a href="files/PAMI12pedestrians.pdf">PAMI 2012</a> paper.
+<br /><b>Note:</b> The evaluation scheme has evolved since our <a href="files/CVPR09pedestrians.pdf">CVPR 2009</a> paper.
+<br /><b>Note:</b> We render at most 15 top results per plot (but always include the VJ and HOG baselines).</p>
+
+<ol>
+<li><b>Caltech Pedestrian <i>Testing</i> Dataset</b>: We give two set of results: on 50-pixel or taller, unoccluded or partially occluded pedestrians (<a href="rocs/UsaTestRocReasonable.pdf">reasonable</a>), and a more detailed breakdown of performance as in the paper (<a href="rocs/UsaTestRocs.pdf">detailed</a>).</li>
+
+<li><b>Caltech Pedestrian <i>Training</i> Dataset</b>: Results on the Caltech training data: <a href="rocs/UsaTrainRocReasonable.pdf">reasonable</a>, <a href="rocs/UsaTrainRocs.pdf">detailed</a>.</li>
+
+<li><b>Caltech Pedestrian <i>Japan</i> Dataset</b>: Similar to the Caltech Pedestrian Dataset (both in magnitude and annotation), except video was collected in Japan. We cannot release this data, however, we will benchmark results to give a secondary evaluation of various detectors. Results: <a href="rocs/JapanRocReasonable.pdf">reasonable</a>, <a href="rocs/JapanRocs.pdf">detailed</a>.</li>
+
+<li><b>INRIA Pedestrian Test Dataset</b>: <a href="rocs/InriaTestRocReasonable.pdf">Full image results</a> on the INRIA Pedestrian dataset (<a href="datasets/INRIA/readme.txt">evaluation details</a>). </li>
+
+<li><b>ETH Pedestrian Dataset</b>: <a href="rocs/ETHRocReasonable.pdf">Results</a> on the ETH Pedestrian dataset (<a href="datasets/ETH/readme.txt">evaluation details</a>). </li>
+
+<li><b>TUD-Brussels Pedestrian Dataset</b>: <a href="rocs/TudBrusselsRocReasonable.pdf">Results</a> on the TUD-Brussels Pedestrian dataset (<a href="datasets/TudBrussels/readme.txt">evaluation details</a>). </li>
+
+<li><b>Daimler Pedestrian Dataset</b>: <a href="rocs/DaimlerRocReasonable.pdf">Results</a> on the Daimler Pedestrian dataset (<a href="datasets/Daimler/readme.txt">evaluation details</a>). </li>
+
+</ol>
+
+<!--==================================================================================-->
+<h2><a name="Submitting"></a>Submitting Results</h2>
+
+<p>Please contact us to include your detector results on this site. We perform the evaluation on every 30th frame, starting with the 30th frame. For each video, the results for each frame should be a text file, with naming as follows: "I00029.txt, I00059.txt, ...". Each text file should contain 1 row per detected bounding box, in the format "[left, top, width, height, score]". If no detections are found the text file should be empty (but must still be present). The directory structure should mimic the directory structure containing the videos: "set00/V000, set00/V001...". Please see the output files for the evaluated algorithms (available in the download section) if the above description is unclear. Note that during evaluation all detections for a given video are concatenated into a single text file, thus avoiding having tens of thousands of text files per detector (see provided detector files for details). </p>
+
+<!--==================================================================================-->
+<h2>Related Datasets</h2>
+
+<p>Below we list other pedestrian datasets, roughly in order of relevance and similarity to the Caltech Pedestrian dataset. A more detailed comparison of the datasets (except the first two) can be found in the paper.</p>
+<ul>
+<li><a href="https://sites.google.com/site/rearviewpeds1/">GM-ATCI</a>: Rear-View Pedestrians Dataset captured from a fisheye-lens camera.</li>
+<li><a href="http://www.gavrila.net/Datasets/Daimler_Pedestrian_Benchmark_D/daimler_pedestrian_benchmark_d.html">Daimler</a>: Also captured in an urban setting, update of the older DaimlerChrysler dataset. Contains tracking information and a large number of labeled bounding boxes.</li>
+<li><a href="http://www.nicta.com.au/category/research/computer-vision/tools/automap-datasets/">NICTA</a>: A large scale urban dataset collected in multiple cities/countries. No motion/tracking information, but significant number of unique pedestrians.</li>
+<li><a href="http://www.vision.ee.ethz.ch/~aess/dataset/">ETH</a>: Urban dataset captured from a stereo rig mounted on a stroller.</li>
+<li><a href="http://www.d2.mpi-inf.mpg.de/tud-brussels">TUD-Brussels</a>: Dataset with image pairs recorded in an crowded urban setting with an onboard camera.</li>
+<li><a href="http://pascal.inrialpes.fr/data/human/">INRIA</a>: Currently one of the most popular static pedestrian detection datasets.</li>
+<li><a href="http://pascallin.ecs.soton.ac.uk/challenges/VOC/databases.html">PASCAL</a>: Static object dataset with diverse object views and poses.</li>
+<li><a href="http://www.cvc.uab.es/adas/site/?q=node/7">CVC-ADAS</a>: collection of pedestrian datasets including pedestrian videos acquired on-board, virtual-world pedestrians (with part annotations), and occluded pedestrians.</li>
+<li><a href="http://iris.usc.edu/Vision-Users/OldUsers/bowu/DatasetWebpage/dataset.html">USC</a>: A number of fairly small pedestrian datasets taken largely from surveillance video. </li>
+<li><a href="http://cbcl.mit.edu/software-datasets/PedestrianData.html">MIT</a>: One of the first pedestrian datasets, fairly small and relatively well solved at this point.</li>
+</ul>
+
+<!-- Link no longer exists
+<p>The following site maintained by Edgar Seemann is also a useful reference for pedestrian detection:<br />
+<a href="http://www.pedestrian-detection.com/">pedestrian-detection.com</a>.</p>
+-->
+
+<!--==================================================================================-->
+<h2><a name="ChangeLog"></a>Change Log</h2>
+
+<ul>
+<li>07/01/2019: Added ADM, ShearFtrs, and AR-Ped results.</li>
+<li>08/31/2018: Added GDFL results.</li>
+<li>07/05/2018: Added TLL-TFA results.</li>
+<li>07/05/2018: Added FasterRCNN+ATT and AdaptFasterRCNN results.</li>
+<li>06/03/2018: Added F-DNN2+SS results.</li>
+<li>04/15/2018: Added PCN results.</li>
+<li>11/20/2017: Added SDS-RCNN results.</li>
+<li>10/23/2017: Added UDN+ results.</li>
+<li>12/12/2016: Added ACF++/LDCF++, MRFC, and F-DNN results.</li>
+<li>09/04/2016: Added MS-CNN results.</li>
+<li>07/26/2016: Added RPN+BF results.</li>
+<li>03/04/2016: Added SA-FastRCNN results.</li>
+<li>11/08/2015: Added SCF+AlexNet results.</li>
+<li>10/26/2015: Added CompACT-Deep results.</li>
+<li>09/24/2015: Added CCF results.</li>
+<li>09/16/2015: Added Checkerboards, LFOV, DeepCascade, DeepParts, SCCPriors, TA-CNN, FastCF, and NAMC results. Slightly updated display code for latest OSX Matlab. Fixed some broken links.</li>
+<li>10/29/2014: New code release v3.2.1 (modified dbExtract.m, updated headers).</li>
+<li>09/21/2014: Added LDCF, ACF-Caltech+, SpatialPooling, SpatialPooling+, and Katamari
+ results.</li>
+<li>07/22/2014: Updated CVC-ADAS dataset link and description.</li>
+<li>07/16/2014: Added WordChannels and InformedHaar results.</li>
+<li>06/04/2014: Added RandForest results.</li>
+<li>05/20/2014: Added Franken, JointDeep, MultiSDP, and SDN results. </li>
+<li>11/11/2013: Added FisherBoost and pAUCBoost results. </li>
+<li>08/08/2013: Added ACF+SDt results. </li>
+<li>07/30/2013: New code release v3.2.0 (added dbExtract.m for extracting images and text files, refactored dbEval.m). Added ACF and ACF-Caltech results.</li>
+<li>07/16/2013: Added MOCO results. </li>
+<li>07/11/2013: Added DBN-Isol, DBN-Mut, and +2Ped results. Updated algorithms.pdf and website. </li>
+<li>07/08/2013: Added MLS and MT-DPM results. Rendering at most 15 top results per plot.</li>
+<li>07/07/2013: Added ConvNet, SketchTokens, Roerei and AFS results.</li>
+<li>07/05/2013: New code release v3.1.0 (cleanup and commenting). Updated plot colors and style. No longer accepting results in form of binaries. Updated detection format to have one results text file per video.</li>
+<li>11/26/2012: Added VeryFast results. Updated links to TUD and Daimler datasets.</li>
+<li>08/04/2012: Added Crosstalk results. New code release v3.0.1.</li>
+<li>01/18/2012: Added MultiResC results on the Caltech Pedestrian Testing Dataset.</li>
+<li>09/05/2011: Major update of site to correspond to PAMI 2012 publication (released test annotations, updated evaluation code, updated plots, posted PAMI paper, added FeatSynth and HOG-LBP detectors).</li>
+<li>08/02/2010: Added runtime versus performance plots.</li>
+<li>08/01/2010: Added FPDW and PLS results. Fixed MultiFtr+CSS results on USA data. New code release v2.2.0.</li>
+<li>06/27/2010: Added converted version of Daimler pedestrian dataset and evaluation results on Daimler data.</li>
+<li>05/31/2010: Added MultiFtr+CSS and MultiFtr+Motion results.</li>
+<li>04/18/2010: Added TUD-Brussels and ETH results, new code release (new vbbLabeler), website update.</li>
+<li>03/15/2010: Major overhaul: new evaluation criterion, releasing test images, all new rocs, added ChnFtrs results, updated HikSvm and LatSvm-V2 results, updated code, website update. </li>
+<li>06/12/2009: Added PoseInv results, link to TUD-Brussels dataset. </li>
+<li>06/08/2009: Added LatSvm-V2 results. </li>
+<li>06/02/2009: Various tweaks to site. </li>
+<li>05/18/2009: Initial version of site.</li>
+</ul>
+
+<!--==================================================================================-->
+<h2><a name="Contact"></a>Contact</h2>
+
+<p>Please contact <a href="http://vision.ucsd.edu/~pdollar/">Piotr Doll&aacute;r</a> [pdollar[[at]]gmail.com] with questions or comments or to submit detector results.</p>
+
+<!--==================================================================================-->
+<h2><a name="References"></a>References</h2>
+
+<p>P. Doll&aacute;r, C. Wojek, B. Schiele and P. Perona
+<br/>Pedestrian Detection: An Evaluation of the State of the Art
+<br/><a href="http://www.computer.org/portal/web/tpami/" target="_blank">PAMI</a>, 2012.
+[<a href="files/PAMI12pedestrians.pdf">pdf</a> | <a href="files/PAMI12pedestrians.bib">bibtex</a>].
+</p>
+
+<p>P. Doll&aacute;r, C. Wojek, B. Schiele and P. Perona
+<br/>Pedestrian Detection: A Benchmark
+<br/><a href="http://www.cvpr2009.org/" target="_blank">CVPR 2009</a>, Miami, Florida.
+[<a href="files/CVPR09pedestrians.pdf">pdf</a> | <a href="files/CVPR09pedestrians.bib">bibtex</a>]
+</p><br />
+
+<!--==================================================================================-->
+</TD></TR></TBODY></TABLE></body></html>
